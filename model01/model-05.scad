@@ -11,46 +11,46 @@ Pt = 2; // Толщина пробки
 
 difference() {
 
-  union() {
-    difference() {
-      linear_extrude(height = W, scale = 1.0, center=true) {
-        difference() {
-          hull() {
-            translate([0,-H/2,0]) circle(d=T);
-            translate([0, H/2,0]) circle(d=T);
-          }
+    union() {
+      difference() {
+        linear_extrude(height = W, scale = 1.0, center=true) {
+          difference() {
+            hull() {
+              translate([0,-H/2,0]) circle(d=T);
+              translate([0, H/2,0]) circle(d=T);
+            }
 
+            hull() {
+              translate([0,-15,0]) circle(d=T-wp*2);
+              translate([0, 15,0]) circle(d=T-wp*2);
+            }
+          }
+          /*offset(3) {
+          scale([0.001,1,1]) square(30, center=true);
+          }*/
+        }
+
+        translate([0, 0, -W/2 + Pt/2 - 0.25]) linear_extrude(height = Pt + 0.5, scale = 1.0, center=true) {
           hull() {
-            translate([0,-15,0]) circle(d=T-wp*2);
-            translate([0, 15,0]) circle(d=T-wp*2);
+            translate([0,-H/2]) circle(d=T-wp);
+            translate([0, H/2]) circle(d=T-wp);
           }
         }
-        /*offset(3) {
-        scale([0.001,1,1]) square(30, center=true);
-        }*/
-      }
 
-      translate([0, 0, -W/2 + Pt/2 - 0.25]) linear_extrude(height = Pt + 0.5, scale = 1.0, center=true) {
-        hull() {
-          translate([0,-H/2]) circle(d=T-wp);
-          translate([0, H/2]) circle(d=T-wp);
-        }
       }
 
     }
 
-    translate([0, 0, W/2-wp/2]) linear_extrude(height = wp, scale = 1.0, center=true) {
-      hull(){
-        translate([0,-H/2]) circle(d=T);
-        translate([0, H/2]) circle(d=T);
-      }
-    }
+translate([0, 0, W/2-wp/2]) linear_extrude(height = wp, scale = 1.0, center=true) {
+  hull(){
+    translate([0,-H/2]) circle(d=T);
+    translate([0, H/2]) circle(d=T);
   }
+}
 
-
-  /*translate([0, 50, 0]) {
-    cube([100, 100, 100], center=true);
-  }*/
+translate([0, 50, 0]) {
+  cube([100, 100, 100], center=true);
+}
 
 
 }
@@ -113,9 +113,9 @@ pdi = 1.0;  // Диаметр резинового уплотнителя.
       translate([0, 0, wp]) cube([T-wp*3, H, Pt], center=true);
     }
 
-    /*translate([0, 50, 0]) {
+    translate([0, 50, 0]) {
       cube([100, 100, 100], center=true);
-    }*/
+    }
   }
 
   /*translate([0, 0, -W/2 + Pt/2 + wp/2 - offset]) linear_extrude(height=Pt-wp+0.1, center=true) {
